@@ -1,0 +1,98 @@
+<section class='book-new'>
+  <h3>Edit Book </h3>
+  <form (submit)='form.valid && onSubmit($event, form)' #form='ngForm'>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="title">Title: </label>
+        <input class='form-control' type="text" name="title"
+        [(ngModel)]='book.title'
+        required
+        #title='ngModel'
+        minlength='3'>
+        <div *ngIf='(title?.touched || title?.dirty) && title?.errors'>
+          <div *ngIf='title?.errors.required'>
+            You must enter a title
+          </div>
+          <div *ngIf='title?.errors.minlength'>
+            Title must be at least {{ title?.errors.minlength.requiredLength }} characters.  {{ title?.errors.minlength.actualLength }} characters is not enough.
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="author">Author: </label>
+        <input class='form-control' type="text" name="author"
+        [(ngModel)]='book.author'
+        #author='ngModel'
+        minlength='3'
+        required>
+        <div *ngIf='(author?.touched || author?.dirty) && author?.errors'>
+          <div *ngIf='author?.errors.required'>
+            You must enter an author name
+            <div *ngIf='author?.errors.minlength'>
+              Author name must be at least 3 characters
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md">
+        <label for="pages">Pages: </label>
+        <input class='form-control' type="text" name="pages"
+        [(ngModel)]='book.pages'
+        required
+        #pages='ngModel'
+        min='1'>
+        <div *ngIf='(pages?.touched || pages?.dirty) && pages?.errors'>
+          <div *ngIf='pages?.errors.required'>
+            You must enter # of pages
+            <div *ngIf='pages?.errors.minlength'>
+              Pages must be at least 2 characters
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="publisher">Publisher: </label>
+        <input class='form-control' type="text" name="publisher"
+        [(ngModel)]='book.publisher'
+        required
+        #publisher='ngModel'
+        minlength='3'>
+        <div *ngIf='(publisher?.touched || publisher?.dirty) && publisher?.errors'>
+          <div *ngIf='publisher?.errors.required'>
+            You must enter a publisher name
+          </div>
+          <div *ngIf='publisher?.errors.minlength'>
+            Publisher name name must be at {{ publisher?.errors.minlength.requiredLength }} characters.  {{ publisher?.errors.minlength.actualLength }} characters is not enough.
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md">
+        <label for="publication_year">Publication Year: </label>
+        <input class='form-control' type="number" name="publication_year"
+        [(ngModel)]='book.publication_year'
+        required
+        #publication_year='ngModel'
+        min='1800'
+        max='2018'>
+        <div *ngIf='publication_year?.touched && publication_year?.errors'>
+          <div *ngIf='publication_year?.errors.required'>
+          You must enter a year
+          </div>
+          <!-- <div *ngIf='publication_year?.errors.min < publication_year?.min || publication_year?.errors.max > publication_year?.max'>
+            You must enter a year between {{ publication_year?.min }} and {{ publication_year?.max }}
+          </div> -->
+          <!-- You must enter a publication year -->
+          <div *ngIf='publication_year?.min'>
+            {{ year.min | json }}
+          </div>
+          <div *ngIf='publication_year?.max'>
+            {{ year.max | json }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <button *ngIf='form.valid' type='submit' class='btn btn-primary btn-sm'>Submit</button>
+  </form>
+</section>

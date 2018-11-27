@@ -1,0 +1,82 @@
+
+<!-- <app-book-new (createBook)='onCreate($event)'></app-book-new> -->
+<!-- <div class="row">
+  <div class="col">
+    <table *ngIf='books?.length > 0'>
+      <thead>
+        <tr class='header'>
+          <th>ID:</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Pages</th>
+          <th>Publisher</th>
+          <th>Year</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngFor='let book of books | search:filter' (click)='onSelect(book)'>
+        <tr class='results'>
+          <td>{{ book._id }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.pages }}</td>
+          <td>{{ book.publisher }}</td>
+          <td>{{ book.publication_year }}</td>
+          <td>
+            <a routerLink='/books/{{ book._id }}/edit' class='btn btn-primary btn-sm'>Edit</a>
+            <button (click)='onDelete(book._id)' class='btn btn-primary btn-sm'>Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
+<div class="row" *ngIf='books?.length > 0'>
+  <div class="col">
+    <section class='book-list'>
+      <h3>All Books</h3>
+      <div class="row header">
+        <div class="col-2">
+          <input type="text" placeholder="ID" [(ngModel)]='filter._id'>
+          <button *ngIf='filter._id' (click)='filter._id = null' class="btn btn-primary btn-sm clear">X</button>
+        </div>
+        <div class="col-2">
+          <input type="text" placeholder="Title" [(ngModel)]='filter.title'>
+          <button *ngIf='filter.title' (click)='filter.title = null' class="btn btn-primary btn-sm clear">X</button>
+        </div>
+        <div class="col-2">
+          <input type="text" placeholder="Author" [(ngModel)]='filter.author'>
+          <button *ngIf='filter.author' (click)='filter.author = null' class="btn btn-primary btn-sm clear">X</button>
+        </div>
+        <div class="col">Pages: </div>
+        <div class="col">
+          <input type="text" placeholder="Publisher" [(ngModel)]='filter.publisher'>
+          <button *ngIf='filter.publisher' (click)='filter.publisher = null' class="btn btn-primary btn-sm clear">X</button>
+        </div>
+        <div class="col">
+          <input type="text" placeholder="Year" [(ngModel)]='filter.publication_year'>
+          <button *ngIf='filter.publication_year' (click)='filter.publication_year = null' class="btn btn-primary btn-sm clear">X</button>
+        </div>
+        <div class="col-2">Actions: <button class="btn btn-primary btn-sm" (click)='clearFilter()' *ngIf='filter._id || filter.title || filter.author || filter.publisher || filter.publication_year'>X</button></div>
+      </div>
+      <div class="row results"
+        *ngFor="let book of books | search:filter"
+        (click)='onSelect(book)'
+        [routerLink]="['books', book._id]"
+      >
+        <div class="col-2 book-id">{{ book._id }}</div>
+        <div class="col-2">{{ book.title }}</div>
+        <div class="col-2">{{ book.author }}</div>
+        <div class="col">{{ book.pages }}</div>
+        <div class="col">{{ book.publisher }}</div>
+        <div class="col">{{ book.publication_year }}</div>
+        <div class="col-2" (click)='onEvent($event)'>
+          <a routerLink='/books/{{ book._id }}/edit' class='btn btn-primary btn-sm'>Edit</a>
+          <button (click)='onDelete(book._id)' class='btn btn-primary btn-sm'>Delete</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<!-- <app-book-detail [book]="selectedBook"></app-book-detail> -->
+<!-- <app-book-edit></app-book-edit> -->

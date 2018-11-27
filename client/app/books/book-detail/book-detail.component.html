@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col">
+    <section class='book-details' *ngIf='book'>
+      <h3>Selected Book</h3>
+      <div class="row">
+        <div class="col">ID: </div>
+        <div class="col">{{ book._id }}</div>
+      </div>
+      <div class="row">
+        <div class="col">Title: </div>
+        <div class="col">{{ book.title }}</div>
+      </div>
+      <div class="row">
+        <div class="col">Author: </div>
+        <div class="col">{{ book.author }}</div>
+      </div>
+      <div class="row">
+        <div class="col">Pages: </div>
+        <div class="col">{{ book.pages }}</div>
+      </div>
+      <div class="row">
+        <div class="col">Publisher: </div>
+        <div class="col">{{ book.publisher }}</div>
+      </div>
+      <div class="row">
+        <div class="col">Year: </div>
+        <div class="col">{{ book.publication_year }}</div>
+      </div>
+    </section>
+  </div>
+</div>
